@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   const [data, setData] = useState([]);
-  const { state, dispatch } = useContext(UserContext);
+  const { state,  } = useContext(UserContext);
 
   useEffect(() => {
     fetch("/allpost", {
@@ -14,110 +14,109 @@ export default function Home() {
     })
       .then((res) => res.json())
       .then((result) => {
-         console.log(result);
-        setData(result.posts);
+        // console.log(result);
+        setData(result.posts.reverse()); // Corrected reverse() method
       });
   }, []);
-    const likePost = (id) => {
-      fetch("/like", {
-        method: "put",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("jwt"),
-        },
-        body: JSON.stringify({
-          postId: id,
-        }),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          //   console.log(result)
-          const newData = data.map((item) => {
-            if (item._id === result._id) {
-              return result;
-            } else {
-              return item;
-            }
-          });
-          setData(newData);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    const unlikePost = (id) => {
-      fetch("/unlike", {
-        method: "put",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("jwt"),
-        },
-        body: JSON.stringify({
-          postId: id,
-        }),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          //   console.log(result)
-          const newData = data.map((item) => {
-            if (item._id === result._id) {
-              return result;
-            } else {
-              return item;
-            }
-          });
-          setData(newData);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    const makeComment = (text, postId) => {
-      fetch("/comment", {
-        method: "put",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("jwt"),
-        },
-        body: JSON.stringify({
-          postId,
-          text,
-        }),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          console.log(result);
-          const newData = data.map((item) => {
-            if (item._id == result._id) {
-              return result;
-            } else {
-              return item;
-            }
-          });
-          setData(newData);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-       const deletePost = (postid) => {
-         fetch(`/deletepost/${postid}`, {
-           method: "delete",
-           headers: {
-             Authorization: "Bearer " + localStorage.getItem("jwt"),
-           },
-         })
-           .then((res) => res.json())
-           .then((result) => {
-             console.log(result);
-             const newData = data.filter((item) => {
-               return item._id !== postid;
-             });
-             setData(newData);
-           });
-       };
 
+  const likePost = (id) => {
+    fetch("/like", {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+      body: JSON.stringify({
+        postId: id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        const newData = data.map((item) => {
+          if (item._id === result._id) {
+            return result;
+          } else {
+            return item;
+          }
+        });
+        setData(newData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
+  const unlikePost = (id) => {
+    fetch("/unlike", {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+      body: JSON.stringify({
+        postId: id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        const newData = data.map((item) => {
+          if (item._id === result._id) {
+            return result;
+          } else {
+            return item;
+          }
+        });
+        setData(newData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const makeComment = (text, postId) => {
+    fetch("/comment", {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+      body: JSON.stringify({
+        postId,
+        text,
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        const newData = data.map((item) => {
+          if (item._id === result._id) {
+            return result;
+          } else {
+            return item;
+          }
+        });
+        setData(newData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const deletePost = (postid) => {
+    fetch(`/deletepost/${postid}`, {
+      method: "delete",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        // console.log(result);
+        const newData = data.filter((item) => {
+          return item._id !== postid;
+        });
+        setData(newData);
+      });
+  };
 
   return (
     <div className="home">
@@ -151,7 +150,7 @@ export default function Home() {
                 )}
               </h5>
               <div className="card-image">
-                {/* {console.log(item.photo)} */}
+                {console.log(item.photo)}
                 <img src={item.photo} alt="Post" />
               </div>
               <div className="card-content">
@@ -190,10 +189,10 @@ export default function Home() {
                   </h6>
                 ))}
                 <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  makeComment(e.target[0].value, item._id);
-                }}
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    makeComment(e.target[0].value, item._id);
+                  }}
                 >
                   <input type="text" placeholder="add a comment" />
                 </form>

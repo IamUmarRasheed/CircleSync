@@ -1,18 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
 
 a{
-  color: black !important;
+  color: white !important;
+  font-size: xx-large;
 }
 .myspan{
-  font-family: 'Grand Hotel', cursive;
+   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   font-size: xx-large;
   margin-left: 70px;
    color: black !important;
+   font-style: italic;
 
 }
 .myspan:hover{
-  color:  #0083AF !important;
+  color:  #afac00 !important;
 }
 
 .brand-logo,h2{
@@ -55,12 +57,23 @@ a{
 }
 
 .home-card{
-  max-width: 500px;
+  max-width: 600px;
   height: max-content;
   margin: 26px auto;
-  /* padding-top: 20px; */
+  background-color:#7D0552;
+  /* padding-top: 20px;
   
+
+   */
+  font-family: "Trirong", serif;
+  border: 2px solid red;
+  padding: 10px;
+  border-radius: 20px;
+  font-size: medium;
+  color: aliceblue;
 }
+
+
 .collection-item{
   width: 100%;
 }
@@ -83,6 +96,7 @@ a{
   background-color: brown !important;
   padding-left: 20px;
   padding-right: 20px;
+ 
 }
 
 
@@ -100,9 +114,42 @@ a{
   margin: 0px;
   padding: 20px;
   font-weight: bold;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: xx-large;
+  font-family: "Trirong", serif;
+  color:#FFFFFF !important;
 }
 .body{
-  background-color:slategrey;
+  background-color:#2B547E;
   height: 100%;
+  max-height: 100%;
+}
+
+.create{
+  height: 650px;
+  background-color: #a18686;
+}
+.profile{
+  font-weight: bold;
+  font-size: xx-large;
+  font-family: "Trirong", serif;
+  color:#FFFFFF !important;
+  height: 650px;
+  max-height: 100%;
+}
+
+
+#nav-mobile{
+  color: #FFFFFF;
+}
+.mycard{
+  padding-bottom:250px;
+}
+.logotxt{
+  background-color: #05697d;
+inline-size: 100px;
+margin-left: auto;
+margin-right: auto;
+border-radius: 50px;
+color: #dfa1a1;
+font-size: x-large;
 }

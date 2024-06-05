@@ -20,7 +20,7 @@ export default function Navbar() {
         <Link to={state ? "/" : "/signin"} className="brand-logo left">
           <img src={logoimg} alt="Instalogo" />
         </Link>
-        <span  className="myspan" >MomenTO</span>
+        <span className="myspan">CircleSync</span>
 
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           {state ? (
