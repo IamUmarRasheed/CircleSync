@@ -97,7 +97,7 @@ const Profile = () => {
             />
           </div>
           <div>
-            <h4>{state ? state.name : "loading"}</h4>
+            <h4 style={{color:"wheat" ,fontWeight:"bold"}}> {state ? state.name.toUpperCase() : "loading"}</h4>
             <h5>{state ? state.email : "loading"}</h5>
             <div
               style={{

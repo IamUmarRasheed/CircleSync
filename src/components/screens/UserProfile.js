@@ -96,20 +96,20 @@ const Profile = () => {
   };
 
   return (
-    <div style={{ maxWidth: "550px", margin: "0px auto" }}>
+    <div style={{ maxWidth: "550px", margin: "0px auto" }} className="profile">
       {userProfile ? (
         <>
           <div
             style={{
               display: "flex",
               justifyContent: "space-around",
-           
+
               margin: "18px 0px",
               borderBottom: "1px solid grey",
             }}
           >
             <div>
-                {/* {console.log("helll profile",userProfile.user.pic)} */}
+              {/* {console.log("helll profile",userProfile.user.pic)} */}
               <img
                 style={{
                   width: "160px",
@@ -121,7 +121,9 @@ const Profile = () => {
               />
             </div>
             <div>
-              <h4>{userProfile.user.name}</h4>
+              <h4 style={{ color: "springgreen", fontWeight: "bold" }}>
+                {userProfile.user?.name ? userProfile.user?.name.toUpperCase() : ""}
+              </h4>
               <h5>{userProfile.user.email}</h5>
               <div
                 style={{

@@ -59,6 +59,7 @@ a{
 .home-card{
   max-width: 600px;
   height: max-content;
+  /* padding: 100px; */
   margin: 26px auto;
   background-color:#7D0552;
   /* padding-top: 20px;
@@ -90,6 +91,10 @@ a{
   cursor: pointer;
 }
 
+.material-icons{
+  margin-left: 220px;
+}
+
 
 
 .navbar{
@@ -109,15 +114,16 @@ a{
   background-color: #c62828 !important;
 }
 
-.h5{
+/* .h5{
+  text-align: center;
+ 
   
-  margin: 0px;
-  padding: 20px;
+  display: block;
   font-weight: bold;
   font-size: xx-large;
   font-family: "Trirong", serif;
   color:#FFFFFF !important;
-}
+} */
 .body{
   background-color:#2B547E;
   height: 100%;
@@ -128,6 +134,7 @@ a{
   height: 650px;
   background-color: #a18686;
 }
+
 .profile{
   font-weight: bold;
   font-size: xx-large;
@@ -152,4 +159,29 @@ margin-right: auto;
 border-radius: 50px;
 color: #dfa1a1;
 font-size: x-large;
+}
+
+.profile-pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+  margin-left: 30px;
+}
+
+.profile_text  {
+  color: #ffffff !important;
+ display:inline;
+
+  font-size:x-large !important;
+  font-weight: bold;
+
+}
+div.prodiv{
+display: flex;
+align-items: center;
+
+
+
 }

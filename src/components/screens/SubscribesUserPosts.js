@@ -3,7 +3,7 @@ import { UserContext } from "../../App";
 import { Link } from "react-router-dom";
 const Subscribes = () => {
   const [data, setData] = useState([]);
-  const { state, dispatch } = useContext(UserContext);
+  const { state,  } = useContext(UserContext);
   useEffect(() => {
     fetch("/getsubpost", {
       headers: {

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   const [data, setData] = useState([]);
-  const { state,  } = useContext(UserContext);
+  const { state } = useContext(UserContext);
 
   useEffect(() => {
     fetch("/allpost", {
@@ -14,7 +14,6 @@ export default function Home() {
     })
       .then((res) => res.json())
       .then((result) => {
-        // console.log(result);
         setData(result.posts.reverse()); // Corrected reverse() method
       });
   }, []);
@@ -110,7 +109,6 @@ export default function Home() {
     })
       .then((res) => res.json())
       .then((result) => {
-        // console.log(result);
         const newData = data.filter((item) => {
           return item._id !== postid;
         });
@@ -123,34 +121,46 @@ export default function Home() {
       {data.length > 0 &&
         data.map((item) => {
           const postedById = item.postedBy?._id || "";
-          const postedByName = item.postedBy?.name || "";
+          const postedByName = item.postedBy?.name
+            ? item.postedBy.name.toUpperCase()
+            : "";
+          const profilePicUrl = item.postedBy?.pic || "";
 
           return (
             <div className="card home-card" key={item._id}>
-              <h5 className="h5" style={{ padding: "20px" }}>
-                <Link
-                  to={
-                    postedById !== state._id
-                      ? "/profile/" + postedById
-                      : "/profile"
-                  }
-                >
-                  {postedByName}
-                </Link>{" "}
-                {postedById === state._id && (
-                  <i
-                    className="material-icons"
-                    style={{
-                      float: "right",
-                    }}
-                    onClick={() => deletePost(item._id)}
+              {profilePicUrl && (
+                <div className="prodiv">
+                  {" "}
+                  <img
+                    src={profilePicUrl}
+                    alt="Profile Picture"
+                    className="profile-pic"
+                  />
+                  <Link
+                    className="profile_text"
+                    to={
+                      postedById !== state._id
+                        ? "/profile/" + postedById
+                        : "/profile"
+                    }
                   >
-                    delete
-                  </i>
-                )}
-              </h5>
+                    {postedByName}
+                  </Link>{" "}
+                  {postedById === state._id && (
+                    <i
+                      className="material-icons"
+                      style={{
+                        float: "right",
+                      }}
+                      onClick={() => deletePost(item._id)}
+                    >
+                      delete
+                    </i>
+                  )}
+                </div>
+              )}
+              <h5 className="h5" style={{}}></h5>
               <div className="card-image">
-                {console.log(item.photo)}
                 <img src={item.photo} alt="Post" />
               </div>
               <div className="card-content">
